@@ -37,23 +37,19 @@ function getProviderTimeout(scenario: Scenario) {
   return 0;
 }
 
-function getProviderLimit(scenario: Scenario) {
+function ToastStory({ onAction, scenario }: ToastStoryProps) {
+  const controls = <ToastControls onAction={onAction} scenario={scenario} />;
+  const timeout = getProviderTimeout(scenario);
+
   if (scenario === "multiple") {
-    return feedbackTones.length;
+    return (
+      <ToastProvider limit={feedbackTones.length} timeout={timeout}>
+        {controls}
+      </ToastProvider>
+    );
   }
 
-  return;
-}
-
-function ToastStory({ onAction, scenario }: ToastStoryProps) {
-  return (
-    <ToastProvider
-      limit={getProviderLimit(scenario)}
-      timeout={getProviderTimeout(scenario)}
-    >
-      <ToastControls onAction={onAction} scenario={scenario} />
-    </ToastProvider>
-  );
+  return <ToastProvider timeout={timeout}>{controls}</ToastProvider>;
 }
 
 function ToastControls({ onAction, scenario }: ToastStoryProps) {
@@ -86,18 +82,23 @@ function ToastControls({ onAction, scenario }: ToastStoryProps) {
 
 function ToastToneControls() {
   const toast = useToast();
-  const showTone = (tone: ToastTone) => {
-    toast.show({ id: `${tone}-feedback`, title: `${tone} feedback`, tone });
-  };
+  const showNeutral = useCallback(() => showTone(toast, "neutral"), [toast]);
+  const showSuccess = useCallback(() => showTone(toast, "success"), [toast]);
+  const showWarning = useCallback(() => showTone(toast, "warning"), [toast]);
+  const showDanger = useCallback(() => showTone(toast, "danger"), [toast]);
 
   return (
     <>
-      <Button onClick={() => showTone("neutral")}>{showNeutralLabel}</Button>
-      <Button onClick={() => showTone("success")}>{showSuccessLabel}</Button>
-      <Button onClick={() => showTone("warning")}>{showWarningLabel}</Button>
-      <Button onClick={() => showTone("danger")}>{showDangerLabel}</Button>
+      <Button onClick={showNeutral}>{showNeutralLabel}</Button>
+      <Button onClick={showSuccess}>{showSuccessLabel}</Button>
+      <Button onClick={showWarning}>{showWarningLabel}</Button>
+      <Button onClick={showDanger}>{showDangerLabel}</Button>
     </>
   );
+}
+
+function showTone(toast: ReturnType<typeof useToast>, tone: ToastTone) {
+  toast.show({ id: `${tone}-feedback`, title: `${tone} feedback`, tone });
 }
 
 function getTriggerLabel(scenario: Scenario) {
