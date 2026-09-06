@@ -73,7 +73,9 @@ export const FocusAndKeyboard: Story = {
       expect(close).toHaveFocus();
     });
     await userEvent.tab();
-    await expect(input).toHaveFocus();
+    await waitFor(() => {
+      expect(input).toHaveFocus();
+    });
 
     await userEvent.keyboard("{Escape}");
     await waitFor(() => {
