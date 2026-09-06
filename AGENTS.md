@@ -1,5 +1,7 @@
 # Working on Wyrdhost
 
+Follow the setup, formatting, and validation instructions in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## User Preferences
 
 - Keep the game local. Do not create, connect, publish, or deploy unless the
