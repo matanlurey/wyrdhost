@@ -15,11 +15,12 @@
     "storybook": "npm run storybook --workspace @wyrdhost/game --",
     "storybook:build": "npm run storybook:build --workspace @wyrdhost/game",
     "typecheck": "./scripts/workspaces.sh typecheck",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run --config vitest.config.mts",
     "test:ui": "npm run test:ui --workspace @wyrdhost/game",
     "commitlint": "commitlint --default-config",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check:ui": "npm run test:ui && npm run storybook:build"
   },
   "lint-staged": {
     "*.md": "prettier --write",

@@ -14,6 +14,8 @@ fi
 files=()
 while IFS= read -r -d '' file; do
   files+=("$file")
-done < <(git diff --name-only --diff-filter=ACMR -z "$base")
+done < <({ git diff --name-only --diff-filter=ACMR -z "$base"; git ls-files --others --exclude-standard -z; })
 
-((${#files[@]})) && biome lint --files-ignore-unknown=true "${files[@]}"
+if ((${#files[@]})); then
+  biome lint --files-ignore-unknown=true "${files[@]}"
+fi

@@ -27,7 +27,7 @@ while IFS= read -r -d '' file; do
   else
     biome_files+=("$file")
   fi
-done < <(git diff --name-only --diff-filter=ACMR -z "$base")
+done < <({ git diff --name-only --diff-filter=ACMR -z "$base"; git ls-files --others --exclude-standard -z; })
 
 if ((${#biome_files[@]})); then
   if [[ $mode == --write ]]; then
