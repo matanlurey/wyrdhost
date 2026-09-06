@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-mode=${1:?expected --write or --check}
-shift
-
 if [[ ${1:-} == --all || ${GITHUB_REF_NAME:-$(git branch --show-current)} == main ]]; then
-  if [[ $mode == --write ]]; then
-    exec biome format --write .
-  fi
-  exec biome format .
+  exec biome lint .
 fi
 
 if [[ -n ${GITHUB_BASE_REF:-} ]]; then
@@ -22,10 +16,4 @@ while IFS= read -r -d '' file; do
   files+=("$file")
 done < <(git diff --name-only --diff-filter=ACMR -z "$base")
 
-if ((${#files[@]})); then
-  if [[ $mode == --write ]]; then
-    biome format --write --files-ignore-unknown=true "${files[@]}"
-  else
-    biome format --files-ignore-unknown=true "${files[@]}"
-  fi
-fi
+((${#files[@]})) && biome lint --files-ignore-unknown=true "${files[@]}"
