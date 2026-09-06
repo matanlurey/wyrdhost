@@ -1,0 +1,31 @@
+@layer components {
+  .iconButton {
+    flex: none;
+    padding: 0;
+    aspect-ratio: 1;
+
+    &[data-size="small"] {
+      inline-size: 2rem;
+    }
+
+    &[data-size="medium"] {
+      inline-size: 2.5rem;
+    }
+
+    &[data-size="large"] {
+      inline-size: 2.75rem;
+    }
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    & > svg {
+      inline-size: 1.25em;
+      block-size: 1.25em;
+    }
+  }
+}

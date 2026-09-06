@@ -25,6 +25,22 @@
   },
   "overrides": [
     {
+      "includes": ["apps/game/src/**/*.tsx"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "useLiteralKeys": "off"
+          },
+          "correctness": {
+            "noSolidDestructuredProps": "off"
+          },
+          "suspicious": {
+            "noReactSpecificProps": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": [
         "apps/game/.storybook/*.ts",
         "apps/game/src/**/*.stories.ts",

@@ -8,9 +8,5 @@
     "tsBuildInfoFile": "../../node_modules/.cache/game-storybook.tsbuildinfo",
     "types": ["vite/client"]
   },
-  "include": [
-    ".storybook/preview.ts",
-    "src/**/*.stories.ts",
-    "src/**/*.stories.tsx"
-  ]
+  "include": [".storybook/preview.ts", "src"]
 }
