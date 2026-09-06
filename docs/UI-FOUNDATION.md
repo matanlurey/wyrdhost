@@ -35,7 +35,7 @@ Primitives are colocated under `apps/game/src/ui/primitives` with their CSS Modu
 - `Dialog` provides a modal dialog with labelled title and description, focus management, scroll containment, and controlled or uncontrolled state.
 - `AlertDialog` starts focus on the safe cancel action and requires an explicit destructive confirmation.
 - `Drawer` is a bottom-only mobile sheet with swipe dismissal, focus management, safe-area padding, and scroll containment.
-- `ToastProvider` and `useToast` provide queued info, success, and error feedback. Every event has a stable ID, so repeated events update one toast rather than creating spam. Error feedback uses urgent announcement priority.
+- `ToastProvider` and `useToast` provide queued neutral, success, warning, and danger feedback. Every event has a stable ID, so repeated events update one toast rather than creating spam. Danger feedback uses urgent announcement priority.
 
 Use native semantic HTML for ordinary controls. Use Base UI only when a component needs focus trapping, dismissal gestures, live-region management, or another interaction model that is difficult to implement correctly with native HTML.
 
@@ -65,7 +65,7 @@ npm run storybook
 
 Stories include narrow phone, phone, large phone, tablet, and desktop viewport presets. Colocate stories with a primitive and cover its meaningful states, long content, keyboard behavior, narrow screens, and reduced motion. Add `play` assertions for semantics and interaction behavior. Storybook accessibility violations fail the browser suite.
 
-Chromium tests use Vitest, Playwright, touch emulation, and reduced-motion emulation:
+Chromium tests use Vitest and Playwright. Every story runs once with default desktop input and motion settings and once with touch and reduced-motion emulation:
 
 ```sh
 npm run test:ui
@@ -76,6 +76,8 @@ Install the browser once on a new machine:
 ```sh
 npx playwright install chromium
 ```
+
+The application shell owns safe-area padding for its full-screen layout. Viewport-edge primitives such as drawers and toasts consume the safe-area tokens directly; do not add safe-area padding to `body`.
 
 ## Adding a primitive
 

@@ -34,8 +34,16 @@
       opacity var(--duration-normal) var(--ease-standard),
       transform var(--duration-normal) var(--ease-standard);
 
-    &[data-type="error"] {
+    &[data-type="danger"] {
       border-color: var(--color-danger);
+    }
+
+    &[data-type="success"] {
+      border-color: var(--color-success);
+    }
+
+    &[data-type="warning"] {
+      border-color: var(--color-warning);
     }
 
     &[data-starting-style],

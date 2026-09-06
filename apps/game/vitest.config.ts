@@ -26,13 +26,23 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            instances: [{ browser: "chromium" }],
-            provider: playwright({
-              contextOptions: {
-                hasTouch: true,
-                reducedMotion: "reduce",
+            instances: [
+              {
+                browser: "chromium",
+                name: "chromium-default",
               },
-            }),
+              {
+                browser: "chromium",
+                name: "chromium-accessibility",
+                provider: playwright({
+                  contextOptions: {
+                    hasTouch: true,
+                    reducedMotion: "reduce",
+                  },
+                }),
+              },
+            ],
+            provider: playwright(),
           },
         },
       },

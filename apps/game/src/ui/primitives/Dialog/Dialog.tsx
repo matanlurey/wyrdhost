@@ -53,10 +53,7 @@ export function Dialog({
                 {description}
               </BaseDialog.Description>
             </header>
-            {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Scrollable dialog content must be keyboard accessible. */}
-            <div className={styles["content"]} tabIndex={0}>
-              {children}
-            </div>
+            <div className={styles["content"]}>{children}</div>
             <footer className={styles["actions"]}>
               <BaseDialog.Close
                 render={<Button variant="secondary">{closeLabel}</Button>}

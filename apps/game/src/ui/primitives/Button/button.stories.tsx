@@ -113,9 +113,17 @@ export const CoarsePointerSizing: Story = {
   },
   play: async ({ canvas }) => {
     const button = canvas.getByRole("button", { name: "Go" });
+    const hasCoarsePointer = globalThis.matchMedia("(pointer: coarse)").matches;
+
+    await expect(hasCoarsePointer).toBe(
+      globalThis.navigator.maxTouchPoints > 0,
+    );
+    if (!hasCoarsePointer) {
+      return;
+    }
+
     const bounds = button.getBoundingClientRect();
 
-    await expect(globalThis.matchMedia("(pointer: coarse)").matches).toBe(true);
     await expect(bounds.width).toBeGreaterThanOrEqual(
       minimumTouchTargetCssPixels,
     );

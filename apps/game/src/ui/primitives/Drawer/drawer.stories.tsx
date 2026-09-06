@@ -58,19 +58,12 @@ export const KeyboardDismissal: Story = {
       expect(drawer.contains(globalThis.document.activeElement)).toBe(true);
     });
 
-    const content = page.getByText(basicContent).parentElement;
     const close = page.getByRole("button", { name: "Close drawer" });
-    if (!(content instanceof HTMLElement)) {
-      throw new Error("Missing drawer content");
-    }
-
-    content.focus();
-    await userEvent.tab({ shift: true });
     await waitFor(() => {
       expect(close).toHaveFocus();
     });
     await userEvent.tab();
-    await expect(content).toHaveFocus();
+    await expect(close).toHaveFocus();
 
     await userEvent.keyboard("{Escape}");
     await waitFor(() => {
@@ -149,14 +142,5 @@ export const ControlledState: Story = {
     await waitFor(() => {
       expect(page.queryByRole("dialog")).not.toBeInTheDocument();
     });
-  },
-};
-
-export const ReducedMotion: Story = {
-  args: { defaultOpen: true },
-  play: async () => {
-    await expect(
-      globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    ).toBe(true);
   },
 };

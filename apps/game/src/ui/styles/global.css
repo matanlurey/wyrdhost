@@ -14,8 +14,6 @@ html {
 
 body {
   min-block-size: 100dvb;
-  padding-block: var(--safe-area-block-start) var(--safe-area-block-end);
-  padding-inline: var(--safe-area-inline-start) var(--safe-area-inline-end);
   line-height: var(--line-height-normal);
 }
 

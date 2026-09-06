@@ -5,7 +5,7 @@ import { ToastStory } from "./toast-story-fixtures.tsx";
 // biome-ignore lint/correctness/noUnresolvedImports: Vite loads CSS Modules at build time.
 import storyStyles from "./toast.stories.module.css";
 
-const expectedLowPriorityToasts = 2;
+const expectedLowPriorityToasts = 3;
 const pauseAssertionDelayMs = 250;
 const toastRemovalTimeoutMs = 1000;
 
@@ -30,13 +30,13 @@ export const FeedbackTones: Story = {
     const viewport = page.getByRole("region", { name: "Notifications" });
     await expect(viewport).toHaveAttribute("aria-live", "polite");
 
-    await userEvent.click(canvas.getByRole("button", { name: "Show info" }));
+    await userEvent.click(canvas.getByRole("button", { name: "Show neutral" }));
     await expect(
-      page.getByRole("dialog", { name: "info feedback" }),
+      page.getByRole("dialog", { name: "neutral feedback" }),
     ).toBeInTheDocument();
 
-    await userEvent.click(canvas.getByRole("button", { name: "Show error" }));
-    await expect(page.getByRole("alert")).toHaveTextContent("error feedback");
+    await userEvent.click(canvas.getByRole("button", { name: "Show danger" }));
+    await expect(page.getByRole("alert")).toHaveTextContent("danger feedback");
   },
 };
 
@@ -61,13 +61,13 @@ export const MultipleToasts: Story = {
   args: { scenario: "multiple" },
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(
-      canvas.getByRole("button", { name: "Show three toasts" }),
+      canvas.getByRole("button", { name: "Show four toasts" }),
     );
     const page = within(globalThis.document.body);
     await expect(page.getAllByRole("dialog")).toHaveLength(
       expectedLowPriorityToasts,
     );
-    await expect(page.getByRole("alert")).toHaveTextContent("error event");
+    await expect(page.getByRole("alert")).toHaveTextContent("danger event");
   },
 };
 
@@ -159,14 +159,5 @@ export const SafeAreaSimulation: Story = {
     await waitFor(() => {
       expect(page.getByText("Roster saved")).toBeVisible();
     });
-  },
-};
-
-export const ReducedMotion: Story = {
-  args: { scenario: "long" },
-  play: async () => {
-    await expect(
-      globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    ).toBe(true);
   },
 };

@@ -49,7 +49,7 @@ export function Drawer({
                 {description}
               </BaseDrawer.Description>
             </header>
-            <BaseDrawer.Content className={styles["content"]} tabIndex={0}>
+            <BaseDrawer.Content className={styles["content"]}>
               {children}
             </BaseDrawer.Content>
             <footer className={styles["actions"]}>

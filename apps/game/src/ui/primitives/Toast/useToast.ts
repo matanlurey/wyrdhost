@@ -1,7 +1,7 @@
 import { Toast as BaseToast } from "@base-ui/react/toast";
 import type { MouseEventHandler } from "react";
 
-type ToastTone = "error" | "info" | "success";
+type ToastTone = "danger" | "neutral" | "success" | "warning";
 
 interface ShowToastOptions {
   action?: {
@@ -25,7 +25,7 @@ function getActionProps(action: ShowToastOptions["action"]) {
 }
 
 function getPriority(tone: ToastTone) {
-  if (tone === "error") {
+  if (tone === "danger") {
     return "high" as const;
   }
 
@@ -43,7 +43,7 @@ function useToast() {
       id,
       timeout,
       title,
-      tone = "info",
+      tone = "neutral",
     }: ShowToastOptions) {
       return manager.add({
         actionProps: getActionProps(action),

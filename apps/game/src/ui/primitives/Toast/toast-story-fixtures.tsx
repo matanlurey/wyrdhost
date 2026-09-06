@@ -17,13 +17,14 @@ interface ToastStoryProps {
 }
 
 const timedToastTimeoutMs = 200;
-const showInfoLabel = "Show info";
+const showNeutralLabel = "Show neutral";
 const showSuccessLabel = "Show success";
-const showErrorLabel = "Show error";
-const showMultipleLabel = "Show three toasts";
+const showWarningLabel = "Show warning";
+const showDangerLabel = "Show danger";
+const showMultipleLabel = "Show four toasts";
 const repeatLabel = "Repeat event";
 const showToastLabel = "Show toast";
-const feedbackTones = ["info", "success", "error"] as const;
+const feedbackTones = ["neutral", "success", "warning", "danger"] as const;
 
 const longDescription =
   "The company roster was saved locally. This deliberately long notification checks that narrow screens wrap text without creating horizontal overflow or hiding its controls.";
@@ -46,12 +47,12 @@ function ToastStory({ onAction, scenario }: ToastStoryProps) {
 
 function ToastControls({ onAction, scenario }: ToastStoryProps) {
   const toast = useToast();
-  const showInfo = useCallback(
+  const showNeutral = useCallback(
     () =>
       toast.show({
-        id: "info-feedback",
-        title: "info feedback",
-        tone: "info",
+        id: "neutral-feedback",
+        title: "neutral feedback",
+        tone: "neutral",
       }),
     [toast],
   );
@@ -64,12 +65,21 @@ function ToastControls({ onAction, scenario }: ToastStoryProps) {
       }),
     [toast],
   );
-  const showError = useCallback(
+  const showWarning = useCallback(
     () =>
       toast.show({
-        id: "error-feedback",
-        title: "error feedback",
-        tone: "error",
+        id: "warning-feedback",
+        title: "warning feedback",
+        tone: "warning",
+      }),
+    [toast],
+  );
+  const showDanger = useCallback(
+    () =>
+      toast.show({
+        id: "danger-feedback",
+        title: "danger feedback",
+        tone: "danger",
       }),
     [toast],
   );
@@ -90,9 +100,10 @@ function ToastControls({ onAction, scenario }: ToastStoryProps) {
   if (scenario === "tones") {
     return (
       <>
-        <Button onClick={showInfo}>{showInfoLabel}</Button>
+        <Button onClick={showNeutral}>{showNeutralLabel}</Button>
         <Button onClick={showSuccess}>{showSuccessLabel}</Button>
-        <Button onClick={showError}>{showErrorLabel}</Button>
+        <Button onClick={showWarning}>{showWarningLabel}</Button>
+        <Button onClick={showDanger}>{showDangerLabel}</Button>
       </>
     );
   }

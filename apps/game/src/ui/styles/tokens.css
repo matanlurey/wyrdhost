@@ -36,6 +36,8 @@
   --color-border-muted: rgb(222 222 216);
   --color-accent: rgb(23 92 211);
   --color-focus: rgb(0 95 204);
+  --color-success: rgb(25 120 75);
+  --color-warning: rgb(159 93 0);
   --color-danger: rgb(180 35 24);
   --color-disabled-surface: rgb(232 232 228);
   --color-disabled-text: rgb(115 115 109);

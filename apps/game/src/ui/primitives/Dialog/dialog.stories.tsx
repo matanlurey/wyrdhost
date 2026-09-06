@@ -57,12 +57,7 @@ export const FocusAndKeyboard: Story = {
     const page = within(globalThis.document.body);
     const dialog = page.getByRole("dialog", { name: "Company orders" });
     const input = page.getByRole("textbox", { name: "Company name" });
-    const content = input.parentElement;
     const close = page.getByRole("button", { name: "Close dialog" });
-
-    if (!(content instanceof HTMLElement)) {
-      throw new Error("Missing dialog content");
-    }
 
     await expect(dialog).toHaveAccessibleDescription(
       "Review the orders before returning to the campaign.",
@@ -73,14 +68,8 @@ export const FocusAndKeyboard: Story = {
 
     input.focus();
     await userEvent.tab({ shift: true });
-    await expect(content).toHaveFocus();
-    await userEvent.tab({ shift: true });
     await waitFor(() => {
       expect(close).toHaveFocus();
-    });
-    await userEvent.tab();
-    await waitFor(() => {
-      expect(content).toHaveFocus();
     });
     await userEvent.tab();
     await expect(input).toHaveFocus();
@@ -187,13 +176,4 @@ export const IncreasedTextSize: Story = {
       </div>
     ),
   ],
-};
-
-export const ReducedMotion: Story = {
-  args: { defaultOpen: true },
-  play: async () => {
-    await expect(
-      globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    ).toBe(true);
-  },
 };
