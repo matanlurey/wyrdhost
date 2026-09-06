@@ -25,14 +25,15 @@
   },
   "overrides": [
     {
-      "includes": ["apps/game/src/**/*.tsx"],
+      "includes": ["apps/game/src/**/*.ts", "apps/game/src/**/*.tsx"],
       "linter": {
         "rules": {
           "complexity": {
             "useLiteralKeys": "off"
           },
           "correctness": {
-            "noSolidDestructuredProps": "off"
+            "noSolidDestructuredProps": "off",
+            "useQwikValidLexicalScope": "off"
           },
           "performance": {
             "useSolidForComponent": "off"

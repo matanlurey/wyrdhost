@@ -37,10 +37,18 @@ function getProviderTimeout(scenario: Scenario) {
   return 0;
 }
 
+function getProviderLimit(scenario: Scenario) {
+  if (scenario === "multiple") {
+    return feedbackTones.length;
+  }
+
+  return;
+}
+
 function ToastStory({ onAction, scenario }: ToastStoryProps) {
   return (
     <ToastProvider
-      limit={scenario === "multiple" ? feedbackTones.length : undefined}
+      limit={getProviderLimit(scenario)}
       timeout={getProviderTimeout(scenario)}
     >
       <ToastControls onAction={onAction} scenario={scenario} />
@@ -50,42 +58,6 @@ function ToastStory({ onAction, scenario }: ToastStoryProps) {
 
 function ToastControls({ onAction, scenario }: ToastStoryProps) {
   const toast = useToast();
-  const showNeutral = useCallback(
-    () =>
-      toast.show({
-        id: "neutral-feedback",
-        title: "neutral feedback",
-        tone: "neutral",
-      }),
-    [toast],
-  );
-  const showSuccess = useCallback(
-    () =>
-      toast.show({
-        id: "success-feedback",
-        title: "success feedback",
-        tone: "success",
-      }),
-    [toast],
-  );
-  const showWarning = useCallback(
-    () =>
-      toast.show({
-        id: "warning-feedback",
-        title: "warning feedback",
-        tone: "warning",
-      }),
-    [toast],
-  );
-  const showDanger = useCallback(
-    () =>
-      toast.show({
-        id: "danger-feedback",
-        title: "danger feedback",
-        tone: "danger",
-      }),
-    [toast],
-  );
   const showMultiple = useCallback(() => {
     for (const tone of feedbackTones) {
       toast.show({
@@ -101,14 +73,7 @@ function ToastControls({ onAction, scenario }: ToastStoryProps) {
   );
 
   if (scenario === "tones") {
-    return (
-      <>
-        <Button onClick={showNeutral}>{showNeutralLabel}</Button>
-        <Button onClick={showSuccess}>{showSuccessLabel}</Button>
-        <Button onClick={showWarning}>{showWarningLabel}</Button>
-        <Button onClick={showDanger}>{showDangerLabel}</Button>
-      </>
-    );
+    return <ToastToneControls />;
   }
 
   if (scenario === "multiple") {
@@ -117,6 +82,22 @@ function ToastControls({ onAction, scenario }: ToastStoryProps) {
 
   const label = getTriggerLabel(scenario);
   return <Button onClick={showConfigured}>{label}</Button>;
+}
+
+function ToastToneControls() {
+  const toast = useToast();
+  const showTone = (tone: ToastTone) => {
+    toast.show({ id: `${tone}-feedback`, title: `${tone} feedback`, tone });
+  };
+
+  return (
+    <>
+      <Button onClick={() => showTone("neutral")}>{showNeutralLabel}</Button>
+      <Button onClick={() => showTone("success")}>{showSuccessLabel}</Button>
+      <Button onClick={() => showTone("warning")}>{showWarningLabel}</Button>
+      <Button onClick={() => showTone("danger")}>{showDangerLabel}</Button>
+    </>
+  );
 }
 
 function getTriggerLabel(scenario: Scenario) {

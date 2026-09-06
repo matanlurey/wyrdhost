@@ -1,11 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 function useScrollableRegion(label: string) {
-  const ref = useRef<HTMLDivElement>(null);
+  const [element, setElement] = useState<HTMLDivElement | null>(null);
   const [isScrollable, setIsScrollable] = useState(false);
 
   useLayoutEffect(() => {
-    const element = ref.current;
     if (!element) {
       return;
     }
@@ -41,13 +40,17 @@ function useScrollableRegion(label: string) {
       mutationObserver.disconnect();
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [element]);
+
+  if (!isScrollable) {
+    return { ref: setElement };
+  }
 
   return {
-    "aria-label": isScrollable ? label : undefined,
-    ref,
-    role: isScrollable ? ("region" as const) : undefined,
-    tabIndex: isScrollable ? 0 : undefined,
+    "aria-label": label,
+    ref: setElement,
+    role: "region" as const,
+    tabIndex: 0,
   };
 }
 
