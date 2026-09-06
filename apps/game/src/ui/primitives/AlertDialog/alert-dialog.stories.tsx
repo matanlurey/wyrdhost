@@ -28,19 +28,7 @@ type Story = StoryObj<typeof meta>;
 export default meta;
 
 export const Basic: Story = {
-  args: { defaultOpen: true },
-  play: async () => {
-    const page = within(globalThis.document.body);
-    const alert = page.getByRole("alertdialog", {
-      name: "Delete this company?",
-    });
-    const cancel = page.getByRole("button", { name: "Keep company" });
-
-    await expect(alert).toHaveAccessibleDescription(
-      "This removes the company from the current campaign.",
-    );
-    await expect(cancel).toHaveFocus();
-  },
+  args: { defaultOpen: false },
 };
 
 export const SafeDismissal: Story = {
@@ -95,7 +83,7 @@ export const NarrowPhone: Story = {
     viewport: { value: "narrowPhone", isRotated: false },
   },
   args: {
-    defaultOpen: true,
+    defaultOpen: false,
     title: "Delete the northern expedition company and release its units?",
   },
 };

@@ -1,0 +1,9 @@
+<script>
+  "use strict";
+  // Set the landing story before Storybook restores a previous selection.
+  if (!new URLSearchParams(globalThis.location.search).has("path")) {
+    const url = new URL(globalThis.location.href);
+    url.searchParams.set("path", "/story/foundation-overview--overview");
+    globalThis.history.replaceState(null, "", url);
+  }
+</script>
