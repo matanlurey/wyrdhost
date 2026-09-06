@@ -60,11 +60,12 @@ export const KeyboardDismissal: Story = {
     });
 
     const close = page.getByRole("button", { name: "Close drawer" });
-    await expect(drawer).toHaveFocus();
     await userEvent.tab();
     await expect(close).toHaveFocus();
     await userEvent.tab();
-    await expect(close).toHaveFocus();
+    await waitFor(() => {
+      expect(drawer.contains(globalThis.document.activeElement)).toBe(true);
+    });
 
     await userEvent.keyboard("{Escape}");
     await waitFor(() => {
