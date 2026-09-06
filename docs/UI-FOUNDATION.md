@@ -24,7 +24,7 @@ Tokens live in `apps/game/src/ui/styles/tokens.css`.
 - Component tokens are added only when a component needs a stable decision that is not shared, such as a dialog width.
 - Safe-area tokens wrap the four `env(safe-area-inset-*)` values and must be used by viewport-edge UI.
 
-Use an existing token before adding one. Add a token only after a real component needs it. Keep theme-specific styling out of this layer until a theme exists.
+Use an existing token before adding one. Add a token only after a real component needs it. The shell theme now lives in `src/app/theme.css`; keep its pigment mapping separate from these primitive defaults.
 
 ## Primitives
 
@@ -86,4 +86,4 @@ The application shell owns safe-area padding for its full-screen layout. Viewpor
 3. Add the component and one colocated CSS Module. Use tokens instead of raw design values.
 4. Add Storybook stories and focused browser assertions for the behavior the platform must protect.
 5. Check keyboard, focus, accessible naming, long content, phone widths, coarse pointers, safe areas, reduced motion, and forced colors as applicable.
-6. Run `npm run check -- --all`. This includes formatting, linting, type checking, unit and browser tests, the production build, and the Storybook build.
+6. Run `npm run check` and `npm run check:ui`. Together these cover formatting, linting, types, deterministic tests, browser tests, and both builds.

@@ -7,7 +7,7 @@ survive long enough to overcome the campaign’s final threat.
 
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-blue.svg)](https://polyformproject.org/licenses/noncommercial/1.0.0)
 
-**Playable prototype · actively iterating · not released.**
+**Application scaffold · gameplay not implemented · not released.**
 
 ## UI platform
 
@@ -19,3 +19,6 @@ data; gameplay is not implemented in the shell.
 
 See [docs/UI-FOUNDATION.md](docs/UI-FOUNDATION.md) for the architecture and
 component workflow. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks.
+
+Start with the [documentation index](docs/README.md) for current status, architecture,
+and the distinction between proposals and accepted decisions.

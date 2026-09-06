@@ -30,5 +30,5 @@ coherent; text and controls remain at native resolution.
 
 Review the hosted preview and actual screenshots before opening a PR. Check
 phone widths, long content, keyboard navigation, preference persistence, and
-selection. Run the complete CONTRIBUTING gate with Chromium installed; browser
+selection. Run both CONTRIBUTING gates with Chromium installed; browser
 inspection does not substitute for the automated accessibility suite.

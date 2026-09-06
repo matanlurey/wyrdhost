@@ -48,7 +48,7 @@ function App() {
   return (
     <AppBoundary>
       <ToastProvider>
-        <AppShell screen={screen} />
+        <AppShell screen={screen} persistAppearance={true} />
       </ToastProvider>
     </AppBoundary>
   );
@@ -56,11 +56,20 @@ function App() {
 
 interface ShellProps {
   screen?: Screen | "missing";
+  /** Only the application opts into device preferences; stories stay isolated. */
+  persistAppearance?: boolean;
+  initialAppearance?: Appearance;
 }
 
-function AppShell({ screen = "campaign" }: ShellProps) {
+function AppShell({
+  screen = "campaign",
+  persistAppearance = false,
+  initialAppearance = "night",
+}: ShellProps) {
   const contentId = useId();
-  const [appearance, setAppearance] = useState(readAppearance);
+  const [appearance, setAppearance] = useState(() =>
+    persistAppearance ? readAppearance() : initialAppearance,
+  );
   const heading = useRef<HTMLHeadingElement>(null);
   const previousScreen = useRef(screen);
   const label =
@@ -74,6 +83,7 @@ function AppShell({ screen = "campaign" }: ShellProps) {
   }, [screen, label]);
   function changeAppearance(value: Appearance) {
     setAppearance(value);
+    if (!persistAppearance) return;
     try {
       localStorage.setItem("wyrdhost.appearance", value);
     } catch {

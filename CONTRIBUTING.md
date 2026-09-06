@@ -1,44 +1,69 @@
 # Contributing
 
-## Setup
+## Cloud-compatible setup
 
-Install Node.js 26 with `nvm use`, then install dependencies and Chromium:
+Use Node 26 from `.nvmrc` (`nvm use` if nvm is installed), then `npm ci`.
+The committed npm lockfile is authoritative. Use `npm install` when intentionally
+changing dependencies and commit its lockfile changes. No secrets, environment
+variables, local-PC files, or pre-running servers are needed for ordinary checks.
 
-```sh
-npm install
-npx playwright install chromium
-```
+Start the application with `npm run dev`, or the component workshop with
+`npm run storybook`. Both start their own server. A localhost URL is only usable
+inside that environment; requested remote previews need an authorized hosting path.
 
-Keep `package-lock.json` in sync with workspace dependency changes.
-
-## Development
-
-Start the application shell with `npm run dev`. Start the component workshop with:
+## Verification
 
 ```sh
-npm run storybook
+npm run check
 ```
 
-The UI architecture, accessibility contract, token policy, and primitive workflow are documented in [docs/UI-FOUNDATION.md](docs/UI-FOUNDATION.md).
+This default always checks the full tree: formatting, lint, TypeScript,
+deterministic Node-environment Vitest tests, and the production app build.
+`npm run check -- --all` remains equivalent for existing callers.
 
-## Checks
-
-`npm run format`, `npm run format:check`, and `npm run lint` target local changes by default, files changed by a pull request in CI, and the whole tree on `main`. Pass `--all` to target the whole tree explicitly.
-
-Run the complete local gate with:
+Browser checks are separately runnable and required for UI/component/story changes,
+accessibility or theme changes, and browser configuration changes:
 
 ```sh
-npm run check -- --all
+npx playwright install --with-deps chromium
+npm run check:ui
 ```
 
-It runs formatting, linting, type checking, unit tests, Chromium Storybook tests, the production build, and the static Storybook build. The individual UI commands are `npm run test:ui`, `npm run build`, and `npm run storybook:build`.
+This runs Storybook interaction/accessibility tests and its static build. CI runs
+both gates on pull requests and main. Browser installation needs network access;
+if unavailable, report the exact blocker and obtain CI evidence before merging.
+A build cannot substitute for browser tests. The individual commands are `npm test`,
+`npm run typecheck`, `npm run test:ui`, `npm run build`, and `npm run storybook:build`.
 
-Biome provides code and configuration formatting, linting, and import organization. Prettier formats Markdown, which Biome does not yet support. TypeScript, Vitest, Storybook, and Playwright provide compile-time, unit, accessibility, and browser coverage.
+`npm run format`, `npm run format:check`, and `npm run lint` scope to local changes
+and untracked files, PR differences in CI, or the full tree on main. Pass `-- --all`
+to explicitly check everything. Biome handles code; Prettier handles Markdown.
+No broad formatting migration is expected for a focused task.
 
-## Git hooks
+## Repeatable visual review
 
-Git hooks run Biome on staged files and enforce Conventional Commits. The hook commands are also available as `npm run lint-staged` and `npm run commitlint`; pipe a message to the latter when using Jujutsu.
+Use Application/Shell in Storybook: Army is a representative mixed-faction muster;
+NarrowPhone covers long names at 320px; Phone uses 390px; Desktop uses 1280px;
+HighContrast covers an alternate appearance. IsolatedSettings checks that changing
+theme does not write storage. All render the actual AppShell with persistence off.
+Existing primitive stories cover dialogs, drawers, toasts, and interaction edges.
 
-## Continuous integration
+Story viewport presets are manual review controls. The Vitest browser contexts
+exercise desktop and touch/reduced motion; they do not prove that every viewport
+preset was screenshot-tested. Inspect real phone and wide renders for overflow,
+legibility, targets, focus and console errors. Record the viewport, story, revision,
+and observations alongside screenshots in review artifacts. Do not commit transient
+captures or use live saves to stage a scene. Static build success, play assertions,
+inspected screenshots, and owner visual approval are separate evidence.
 
-GitHub Actions installs Playwright Chromium, runs the complete gate, and validates commit messages on pull requests and merges to `main`.
+## Workflow and CI
+
+Read [AGENTS](AGENTS.md) for proportional readiness reviews and task delivery,
+[docs](docs/README.md) for current decisions, and [UI Foundation](docs/UI-FOUNDATION.md)
+for the component contract. Update affected documentation with behavior changes.
+
+Hooks run Biome/Prettier on staged files and enforce Conventional Commits.
+Use task branches and focused PRs. GitHub Actions uses Node from `.nvmrc`, `npm ci`,
+read-only repository permissions, both verification gates, and commitlint. Branch
+protection is outside this repository change; the owner can require the existing
+Check job separately. No Codex environment settings are configured by these files.
