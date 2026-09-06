@@ -6,6 +6,9 @@ const preview: Preview = {
     backgrounds: { value: "canvas" },
   },
   parameters: {
+    options: {
+      storySort: { order: ["Foundation", ["Overview", "*"], "Primitives"] },
+    },
     a11y: {
       test: "error",
     },
