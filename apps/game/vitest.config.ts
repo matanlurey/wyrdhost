@@ -4,6 +4,9 @@ import { defineConfig } from "vitest/config";
 
 // biome-ignore lint/style/noDefaultExport: Vitest discovers configuration through the default export.
 export default defineConfig({
+  optimizeDeps: {
+    include: ["@base-ui/react/alert-dialog", "@base-ui/react/dialog"],
+  },
   test: {
     projects: [
       {
@@ -20,7 +23,10 @@ export default defineConfig({
             headless: true,
             instances: [{ browser: "chromium" }],
             provider: playwright({
-              contextOptions: { hasTouch: true },
+              contextOptions: {
+                hasTouch: true,
+                reducedMotion: "reduce",
+              },
             }),
           },
         },

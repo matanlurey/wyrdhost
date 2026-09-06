@@ -46,4 +46,7 @@
   --safe-area-inline-end: env(safe-area-inset-right, 0rem);
   --safe-area-block-end: env(safe-area-inset-bottom, 0rem);
   --safe-area-inline-start: env(safe-area-inset-left, 0rem);
+
+  --dialog-backdrop: rgb(0 0 0 / 45%);
+  --dialog-max-inline-size: 32rem;
 }
