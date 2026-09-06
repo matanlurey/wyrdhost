@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(html) {
+  text-size-adjust: 100%;
+}
+
+:where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
+  margin: 0;
+}
+
+:where(button, input, select, textarea) {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+:where(button) {
+  touch-action: manipulation;
+}
+
+:where(img, picture, svg, canvas) {
+  display: block;
+  max-inline-size: 100%;
+}
+
+:where(textarea) {
+  resize: block;
+}

@@ -1,0 +1,7 @@
+/* Import this entry once so every global rule has a stable place in the cascade. */
+@layer reset, tokens, base, components, utilities, overrides;
+
+@import url("./reset.css") layer(reset);
+@import url("./tokens.css") layer(tokens);
+@import url("./global.css") layer(base);
+@import url("./accessibility.css") layer(utilities);

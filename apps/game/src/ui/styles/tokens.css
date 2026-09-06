@@ -1,0 +1,49 @@
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+
+  --border-width-thin: 1px;
+  --border-width-thick: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-round: 999rem;
+
+  --duration-instant: 0ms;
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --z-base: 0;
+  --z-overlay: 100;
+  --z-toast: 200;
+
+  --color-canvas: rgb(245 245 243);
+  --color-panel: rgb(255 255 255);
+  --color-text: rgb(28 28 26);
+  --color-text-muted: rgb(95 95 90);
+  --color-border: rgb(200 200 193);
+  --color-border-muted: rgb(222 222 216);
+  --color-accent: rgb(23 92 211);
+  --color-focus: rgb(0 95 204);
+  --color-danger: rgb(180 35 24);
+  --color-disabled-surface: rgb(232 232 228);
+  --color-disabled-text: rgb(115 115 109);
+
+  --focus-ring-width: var(--border-width-thick);
+  --focus-ring-offset: var(--space-1);
+  --safe-area-block-start: env(safe-area-inset-top, 0rem);
+  --safe-area-inline-end: env(safe-area-inset-right, 0rem);
+  --safe-area-block-end: env(safe-area-inset-bottom, 0rem);
+  --safe-area-inline-start: env(safe-area-inset-left, 0rem);
+}
