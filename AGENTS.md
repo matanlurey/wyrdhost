@@ -24,4 +24,3 @@ Follow the setup, formatting, and validation instructions in [CONTRIBUTING.md](C
   invalidated when a design change requires it; migrations are not required at
   this stage. Mention any resulting test-progress reset. Git checkpoints provide
   the history.
-

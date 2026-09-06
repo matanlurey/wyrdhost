@@ -8,8 +8,9 @@ Install Node.js 26 with `nvm use`, then install dependencies with `npm install`.
 
 `npm run format`, `npm run format:check`, `npm run lint`, and `npm run check`
 target local changes by default, files changed by a pull request in CI, and the
-whole tree on `main`. Biome provides formatting, linting, and import
-organization. TypeScript and Vitest provide type checking and tests.
+whole tree on `main`. Biome provides code and configuration formatting,
+linting, and import organization; Prettier formats Markdown, which Biome does
+not yet support. TypeScript and Vitest provide type checking and tests.
 
 Pass `--all` to target the whole tree explicitly.
 

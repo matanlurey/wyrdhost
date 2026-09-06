@@ -6,9 +6,11 @@ shift
 
 if [[ ${1:-} == --all || ${GITHUB_REF_NAME:-$(git branch --show-current)} == main ]]; then
   if [[ $mode == --write ]]; then
-    exec biome format --write .
+    biome format --write .
+    exec prettier --write "**/*.md"
   fi
-  exec biome format .
+  biome format .
+  exec prettier --check "**/*.md"
 fi
 
 if [[ -n ${GITHUB_BASE_REF:-} ]]; then
@@ -17,15 +19,28 @@ else
   base=HEAD
 fi
 
-files=()
+biome_files=()
+markdown_files=()
 while IFS= read -r -d '' file; do
-  files+=("$file")
+  if [[ $file == *.md ]]; then
+    markdown_files+=("$file")
+  else
+    biome_files+=("$file")
+  fi
 done < <(git diff --name-only --diff-filter=ACMR -z "$base")
 
-if ((${#files[@]})); then
+if ((${#biome_files[@]})); then
   if [[ $mode == --write ]]; then
-    biome format --write --files-ignore-unknown=true "${files[@]}"
+    biome format --write --files-ignore-unknown=true "${biome_files[@]}"
   else
-    biome format --files-ignore-unknown=true "${files[@]}"
+    biome format --files-ignore-unknown=true "${biome_files[@]}"
+  fi
+fi
+
+if ((${#markdown_files[@]})); then
+  if [[ $mode == --write ]]; then
+    prettier --write "${markdown_files[@]}"
+  else
+    prettier --check "${markdown_files[@]}"
   fi
 fi

@@ -6,9 +6,6 @@
     "useIgnoreFile": true,
     "defaultBranch": "main"
   },
-  "files": {
-    "includes": ["**", "!AGENTS.md"]
-  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
@@ -17,10 +14,13 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended"
+      "preset": "all"
     },
     "domains": {
-      "react": "recommended"
+      "project": "all",
+      "react": "all",
+      "test": "all",
+      "types": "all"
     }
   },
   "assist": {
