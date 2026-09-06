@@ -10,3 +10,6 @@ npm run format:check "${scope[@]}"
 npm run lint "${scope[@]}"
 npm run typecheck
 npm test
+npm run test:ui
+npm run build
+npm run storybook:build

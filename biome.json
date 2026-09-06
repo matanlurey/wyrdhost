@@ -23,6 +23,42 @@
       "types": "all"
     }
   },
+  "overrides": [
+    {
+      "includes": ["apps/game/src/**/*.ts", "apps/game/src/**/*.tsx"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "useLiteralKeys": "off"
+          },
+          "correctness": {
+            "noSolidDestructuredProps": "off",
+            "useQwikValidLexicalScope": "off"
+          },
+          "performance": {
+            "useSolidForComponent": "off"
+          },
+          "suspicious": {
+            "noReactSpecificProps": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "apps/game/.storybook/*.ts",
+        "apps/game/src/**/*.stories.ts",
+        "apps/game/src/**/*.stories.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {

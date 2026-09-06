@@ -1,0 +1,8 @@
+@layer components {
+  .safeArea {
+    --safe-area-block-start: 2rem;
+    --safe-area-inline-end: 1rem;
+    --safe-area-block-end: 2rem;
+    --safe-area-inline-start: 1rem;
+  }
+}
