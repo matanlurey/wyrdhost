@@ -9,6 +9,7 @@ export default defineConfig({
       "@base-ui/react/alert-dialog",
       "@base-ui/react/dialog",
       "@base-ui/react/drawer",
+      "@base-ui/react/toast",
     ],
   },
   test: {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, waitFor, within } from "storybook/test";
+import { DocumentClass } from "../../testing/DocumentClass.tsx";
 import { Button } from "../Button/Button.tsx";
 import { ControlledDrawerStory } from "./drawer-story-fixtures.tsx";
 import { Drawer } from "./Drawer.tsx";
@@ -127,9 +128,9 @@ export const SafeAreaSimulation: Story = {
   args: { defaultOpen: true },
   decorators: [
     (Story) => (
-      <div className={storyStyles["safeArea"]}>
+      <DocumentClass className={storyStyles["safeArea"]}>
         <Story />
-      </div>
+      </DocumentClass>
     ),
   ],
 };
