@@ -13,8 +13,9 @@ survive long enough to overcome the campaign’s final threat.
 
 The local UI workspace uses React, Vite, Base UI, CSS Modules, Storybook,
 Vitest, and Playwright Chromium. It currently provides the CSS/accessibility
-foundation and reusable button, dialog, drawer, and toast primitives without an
-application shell or final theme.
+foundation, accessible primitives, and a responsive application shell with the
+initial heraldic theme. Campaign and army content is explicitly labelled sample
+data; gameplay is not implemented in the shell.
 
 See [docs/UI-FOUNDATION.md](docs/UI-FOUNDATION.md) for the architecture and
 component workflow. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks.

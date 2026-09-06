@@ -1,0 +1,48 @@
+/* Raw pigments and semantic roles remain separate. Scoped to the game shell. */
+[data-appearance] {
+  --ink: #151d28;
+  --navy: #202d3a;
+  --slate: #2b3c4d;
+  --rule: #455b6d;
+  --edge: #8297a7;
+  --ivory: #f3ebd5;
+  --silver: #b5c0c3;
+  --linen: #e8dbb9;
+  --gold: #e5b95c;
+  --ice: #a8d8e5;
+  --coral: #f09886;
+  --sage: #afc68d;
+  --highcourt: #648dd0;
+  --redlands: #c5624c;
+  --oldwood: #588c73;
+  --barrows: #9993ac;
+  --color-canvas: var(--ink);
+  --color-panel: var(--navy);
+  --color-raised: var(--slate);
+  --color-text: var(--ivory);
+  --color-text-muted: var(--silver);
+  --color-border: var(--edge);
+  --color-border-muted: var(--rule);
+  --color-accent: var(--gold);
+  --color-focus: var(--ice);
+  --color-danger: var(--coral);
+  --color-success: var(--sage);
+  --color-warning: var(--gold);
+  --color-disabled-surface: var(--slate);
+  --color-disabled-text: var(--silver);
+  --color-document: var(--linen);
+  --color-on-document: var(--ink);
+  --radius-md: 0.125rem;
+  --radius-sm: 0.125rem;
+  font-family: "Source Sans 3 Variable", system-ui, sans-serif;
+  color-scheme: dark;
+}
+[data-appearance="contrast"] {
+  --color-canvas: #080f18;
+  --color-panel: #121e2b;
+  --color-raised: #243646;
+  --color-text: #fff8e5;
+  --color-text-muted: #d6dfe2;
+  --color-border: #bfd3df;
+  --color-border-muted: #8297a7;
+}
