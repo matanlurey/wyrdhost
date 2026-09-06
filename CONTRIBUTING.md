@@ -13,7 +13,7 @@ Keep `package-lock.json` in sync with workspace dependency changes.
 
 ## Development
 
-Start the blank Vite development surface with `npm run dev` when application integration work needs it. Start the component workshop with:
+Start the application shell with `npm run dev`. Start the component workshop with:
 
 ```sh
 npm run storybook
