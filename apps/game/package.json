@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "dev": "vite",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "test:ui": "vitest run --project storybook",

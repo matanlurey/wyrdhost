@@ -20,6 +20,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
       - run: npm run check
       - name: Check pull request commits
         if: github.event_name == 'pull_request'

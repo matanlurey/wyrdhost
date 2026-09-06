@@ -8,6 +8,7 @@
   "scripts": {
     "build": "./scripts/workspaces.sh build",
     "check": "./scripts/check.sh",
+    "dev": "npm run dev --workspace @wyrdhost/game",
     "format": "./scripts/format.sh --write",
     "format:check": "./scripts/format.sh --check",
     "lint": "./scripts/lint.sh",
