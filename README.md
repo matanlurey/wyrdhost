@@ -9,3 +9,4 @@ survive long enough to overcome the campaign’s final threat.
 
 **Playable prototype · actively iterating · not released.**
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and checks.

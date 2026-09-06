@@ -1,0 +1,21 @@
+{
+  "name": "wyrdhost-workspace",
+  "private": true,
+  "scripts": {
+    "check": "npm run format:check --",
+    "format": "./scripts/format.sh --write",
+    "format:check": "./scripts/format.sh --check",
+    "commitlint": "commitlint --default-config",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "commitlint": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.0",
+    "prettier": "^3.9.6"
+  }
+}
