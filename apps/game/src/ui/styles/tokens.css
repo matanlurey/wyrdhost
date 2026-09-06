@@ -49,4 +49,5 @@
 
   --dialog-backdrop: rgb(0 0 0 / 45%);
   --dialog-max-inline-size: 32rem;
+  --drawer-max-inline-size: 36rem;
 }

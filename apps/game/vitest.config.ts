@@ -5,7 +5,11 @@ import { defineConfig } from "vitest/config";
 // biome-ignore lint/style/noDefaultExport: Vitest discovers configuration through the default export.
 export default defineConfig({
   optimizeDeps: {
-    include: ["@base-ui/react/alert-dialog", "@base-ui/react/dialog"],
+    include: [
+      "@base-ui/react/alert-dialog",
+      "@base-ui/react/dialog",
+      "@base-ui/react/drawer",
+    ],
   },
   test: {
     projects: [

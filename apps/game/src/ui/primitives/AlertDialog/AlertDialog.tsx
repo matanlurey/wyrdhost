@@ -42,7 +42,7 @@ export function AlertDialog({
       <BaseAlertDialog.Portal>
         <BaseAlertDialog.Backdrop
           className={styles["backdrop"]}
-          role="presentation"
+          data-testid="dialog-backdrop"
         />
         <BaseAlertDialog.Viewport className={styles["viewport"]}>
           <BaseAlertDialog.Popup

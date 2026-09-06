@@ -99,7 +99,7 @@ export const BackdropDismissal: Story = {
     await userEvent.click(trigger);
 
     const page = within(globalThis.document.body);
-    await userEvent.click(page.getByRole("presentation"));
+    await userEvent.click(page.getByTestId("dialog-backdrop"));
     await waitFor(() => {
       expect(page.queryByRole("dialog")).not.toBeInTheDocument();
     });

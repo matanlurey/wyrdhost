@@ -60,7 +60,7 @@ export const SafeDismissal: Story = {
     await userEvent.tab({ shift: true });
     await expect(cancel).toHaveFocus();
 
-    await userEvent.click(page.getByRole("presentation"));
+    await userEvent.click(page.getByTestId("dialog-backdrop"));
     await expect(page.getByRole("alertdialog")).toBeInTheDocument();
     await expect(args.onConfirm).not.toHaveBeenCalled();
 

@@ -38,7 +38,7 @@ export function Dialog({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop
           className={styles["backdrop"]}
-          role="presentation"
+          data-testid="dialog-backdrop"
         />
         <BaseDialog.Viewport className={styles["viewport"]}>
           <BaseDialog.Popup
