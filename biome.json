@@ -23,6 +23,22 @@
       "types": "all"
     }
   },
+  "overrides": [
+    {
+      "includes": [
+        "apps/game/.storybook/*.ts",
+        "apps/game/src/**/*.stories.ts",
+        "apps/game/src/**/*.stories.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {

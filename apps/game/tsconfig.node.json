@@ -7,5 +7,5 @@
     "tsBuildInfoFile": "../../node_modules/.cache/game-node.tsbuildinfo",
     "types": ["node"]
   },
-  "include": ["vite.config.ts"]
+  "include": [".storybook/main.ts", "vite.config.ts", "vitest.config.ts"]
 }

@@ -5,9 +5,12 @@
     "composite": true,
     "jsx": "react-jsx",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "tsBuildInfoFile": "../../node_modules/.cache/game-app.tsbuildinfo",
+    "tsBuildInfoFile": "../../node_modules/.cache/game-storybook.tsbuildinfo",
     "types": ["vite/client"]
   },
-  "include": ["src"],
-  "exclude": ["src/**/*.stories.ts", "src/**/*.stories.tsx"]
+  "include": [
+    ".storybook/preview.ts",
+    "src/**/*.stories.ts",
+    "src/**/*.stories.tsx"
+  ]
 }

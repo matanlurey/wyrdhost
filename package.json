@@ -11,8 +11,11 @@
     "format": "./scripts/format.sh --write",
     "format:check": "./scripts/format.sh --check",
     "lint": "./scripts/lint.sh",
+    "storybook": "npm run storybook --workspace @wyrdhost/game --",
+    "storybook:build": "npm run storybook:build --workspace @wyrdhost/game",
     "typecheck": "./scripts/workspaces.sh typecheck",
     "test": "vitest run --passWithNoTests",
+    "test:ui": "npm run test:ui --workspace @wyrdhost/game",
     "commitlint": "commitlint --default-config",
     "lint-staged": "lint-staged",
     "prepare": "husky"
@@ -28,6 +31,6 @@
     "lint-staged": "^17.5.0",
     "prettier": "^3.9.6",
     "typescript": "7.0.2",
-    "vitest": "5.0.0"
+    "vitest": "4.1.11"
   }
 }
