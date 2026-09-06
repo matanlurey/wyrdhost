@@ -125,7 +125,10 @@ export const ScrollableContent: Story = {
     }
 
     await expect(content.scrollHeight).toBeGreaterThan(content.clientHeight);
-    await expect(content).toHaveAttribute("aria-label", "Company order details");
+    await expect(content).toHaveAttribute(
+      "aria-label",
+      "Company order details",
+    );
     await expect(content).toHaveAttribute("tabindex", "0");
     content.scrollTop = content.scrollHeight;
     await expect(content.scrollTop).toBeGreaterThan(0);
