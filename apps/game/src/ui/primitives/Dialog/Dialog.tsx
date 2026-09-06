@@ -1,6 +1,7 @@
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import type { DialogPopupProps } from "@base-ui/react/dialog";
 import type { ReactElement, ReactNode } from "react";
+import { useScrollableRegion } from "../../hooks/useScrollableRegion.ts";
 import { Button } from "../Button/Button.tsx";
 // biome-ignore lint/correctness/noUnresolvedImports: Vite loads CSS Modules at build time.
 import styles from "./dialog.module.css";
@@ -8,6 +9,7 @@ import styles from "./dialog.module.css";
 export interface DialogProps {
   children: ReactNode;
   closeLabel?: string;
+  contentLabel: string;
   defaultOpen?: boolean;
   description: ReactNode;
   initialFocus?: DialogPopupProps["initialFocus"];
@@ -20,6 +22,7 @@ export interface DialogProps {
 export function Dialog({
   children,
   closeLabel = "Close",
+  contentLabel,
   defaultOpen,
   description,
   initialFocus,
@@ -28,6 +31,8 @@ export function Dialog({
   title,
   trigger,
 }: DialogProps) {
+  const scrollableRegion = useScrollableRegion(contentLabel);
+
   return (
     <BaseDialog.Root
       defaultOpen={defaultOpen}
@@ -53,7 +58,9 @@ export function Dialog({
                 {description}
               </BaseDialog.Description>
             </header>
-            <div className={styles["content"]}>{children}</div>
+            <div className={styles["content"]} {...scrollableRegion}>
+              {children}
+            </div>
             <footer className={styles["actions"]}>
               <BaseDialog.Close
                 render={<Button variant="secondary">{closeLabel}</Button>}

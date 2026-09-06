@@ -34,6 +34,7 @@ const meta = {
     description: "Review the orders before returning to the campaign.",
     children: <p>{basicContent}</p>,
     closeLabel: "Close dialog",
+    contentLabel: "Company order details",
   },
 } satisfies Meta<typeof Dialog>;
 
@@ -124,6 +125,8 @@ export const ScrollableContent: Story = {
     }
 
     await expect(content.scrollHeight).toBeGreaterThan(content.clientHeight);
+    await expect(content).toHaveAttribute("aria-label", "Company order details");
+    await expect(content).toHaveAttribute("tabindex", "0");
     content.scrollTop = content.scrollHeight;
     await expect(content.scrollTop).toBeGreaterThan(0);
   },

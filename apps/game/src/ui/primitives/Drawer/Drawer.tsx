@@ -1,5 +1,6 @@
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ReactElement, ReactNode } from "react";
+import { useScrollableRegion } from "../../hooks/useScrollableRegion.ts";
 import { Button } from "../Button/Button.tsx";
 // biome-ignore lint/correctness/noUnresolvedImports: Vite loads CSS Modules at build time.
 import styles from "./drawer.module.css";
@@ -7,6 +8,7 @@ import styles from "./drawer.module.css";
 export interface DrawerProps {
   children: ReactNode;
   closeLabel?: string;
+  contentLabel: string;
   defaultOpen?: boolean;
   description: ReactNode;
   onOpenChange?: (open: boolean) => void;
@@ -18,6 +20,7 @@ export interface DrawerProps {
 export function Drawer({
   children,
   closeLabel = "Close",
+  contentLabel,
   defaultOpen,
   description,
   onOpenChange,
@@ -25,6 +28,8 @@ export function Drawer({
   title,
   trigger,
 }: DrawerProps) {
+  const scrollableRegion = useScrollableRegion(contentLabel);
+
   return (
     <BaseDrawer.Root
       defaultOpen={defaultOpen}
@@ -49,7 +54,10 @@ export function Drawer({
                 {description}
               </BaseDrawer.Description>
             </header>
-            <BaseDrawer.Content className={styles["content"]}>
+            <BaseDrawer.Content
+              className={styles["content"]}
+              {...scrollableRegion}
+            >
               {children}
             </BaseDrawer.Content>
             <footer className={styles["actions"]}>

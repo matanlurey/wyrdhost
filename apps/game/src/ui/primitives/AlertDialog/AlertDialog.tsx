@@ -1,6 +1,7 @@
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ReactElement, ReactNode } from "react";
 import { useRef } from "react";
+import { useScrollableRegion } from "../../hooks/useScrollableRegion.ts";
 import { Button } from "../Button/Button.tsx";
 // biome-ignore lint/correctness/noUnresolvedImports: Vite loads CSS Modules at build time.
 import styles from "../Dialog/dialog.module.css";
@@ -9,6 +10,7 @@ export interface AlertDialogProps {
   cancelLabel: string;
   children?: ReactNode;
   confirmLabel: string;
+  contentLabel: string;
   defaultOpen?: boolean;
   description: ReactNode;
   onConfirm: () => void;
@@ -22,6 +24,7 @@ export function AlertDialog({
   cancelLabel,
   children,
   confirmLabel,
+  contentLabel,
   defaultOpen,
   description,
   onConfirm,
@@ -31,6 +34,7 @@ export function AlertDialog({
   trigger,
 }: AlertDialogProps) {
   const cancelRef = useRef<HTMLButtonElement>(null);
+  const scrollableRegion = useScrollableRegion(contentLabel);
 
   return (
     <BaseAlertDialog.Root
@@ -57,7 +61,9 @@ export function AlertDialog({
                 {description}
               </BaseAlertDialog.Description>
             </header>
-            <div className={styles["content"]}>{children}</div>
+            <div className={styles["content"]} {...scrollableRegion}>
+              {children}
+            </div>
             <footer className={styles["actions"]}>
               <BaseAlertDialog.Close
                 render={

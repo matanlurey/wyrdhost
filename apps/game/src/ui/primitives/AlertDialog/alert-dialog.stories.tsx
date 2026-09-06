@@ -17,6 +17,7 @@ const meta = {
     children: <p>{consequence}</p>,
     cancelLabel: "Keep company",
     confirmLabel: "Delete company",
+    contentLabel: "Deletion consequences",
     onConfirm: fn(),
   },
 } satisfies Meta<typeof AlertDialog>;

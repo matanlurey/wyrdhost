@@ -39,7 +39,10 @@ function getProviderTimeout(scenario: Scenario) {
 
 function ToastStory({ onAction, scenario }: ToastStoryProps) {
   return (
-    <ToastProvider timeout={getProviderTimeout(scenario)}>
+    <ToastProvider
+      limit={scenario === "multiple" ? feedbackTones.length : undefined}
+      timeout={getProviderTimeout(scenario)}
+    >
       <ToastControls onAction={onAction} scenario={scenario} />
     </ToastProvider>
   );

@@ -32,6 +32,7 @@ const meta = {
     description: "Review the roster before returning to the campaign.",
     children: <p>{basicContent}</p>,
     closeLabel: "Close drawer",
+    contentLabel: "Company preparation details",
   },
 } satisfies Meta<typeof Drawer>;
 
@@ -59,9 +60,9 @@ export const KeyboardDismissal: Story = {
     });
 
     const close = page.getByRole("button", { name: "Close drawer" });
-    await waitFor(() => {
-      expect(close).toHaveFocus();
-    });
+    await expect(drawer).toHaveFocus();
+    await userEvent.tab();
+    await expect(close).toHaveFocus();
     await userEvent.tab();
     await expect(close).toHaveFocus();
 
@@ -105,6 +106,11 @@ export const LongScrollableContent: Story = {
     }
 
     await expect(content.scrollHeight).toBeGreaterThan(content.clientHeight);
+    await expect(content).toHaveAttribute(
+      "aria-label",
+      "Company preparation details",
+    );
+    await expect(content).toHaveAttribute("tabindex", "0");
     content.scrollTop = content.scrollHeight;
     await expect(content.scrollTop).toBeGreaterThan(0);
   },

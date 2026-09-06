@@ -10,6 +10,7 @@ export function ControlledDialogStory() {
 
   return (
     <Dialog
+      contentLabel="Controlled dialog details"
       open={open}
       onOpenChange={setOpen}
       trigger={<Button>{triggerLabel}</Button>}

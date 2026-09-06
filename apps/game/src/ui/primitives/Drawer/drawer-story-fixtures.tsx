@@ -10,6 +10,7 @@ export function ControlledDrawerStory() {
 
   return (
     <Drawer
+      contentLabel="Controlled drawer details"
       open={open}
       onOpenChange={setOpen}
       trigger={<Button>{triggerLabel}</Button>}

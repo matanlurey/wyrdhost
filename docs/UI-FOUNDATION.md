@@ -32,9 +32,9 @@ Primitives are colocated under `apps/game/src/ui/primitives` with their CSS Modu
 
 - `Button` is a native button with size and semantic variant props.
 - `IconButton` requires a text label and hides its icon from assistive technology.
-- `Dialog` provides a modal dialog with labelled title and description, focus management, scroll containment, and controlled or uncontrolled state.
+- `Dialog` provides a modal dialog with labelled title and description, focus management, scroll containment, and controlled or uncontrolled state. Its content becomes a named keyboard-focusable region only when it overflows.
 - `AlertDialog` starts focus on the safe cancel action and requires an explicit destructive confirmation.
-- `Drawer` is a bottom-only mobile sheet with swipe dismissal, focus management, safe-area padding, and scroll containment.
+- `Drawer` is a bottom-only mobile sheet with swipe dismissal, focus management, safe-area padding, and conditionally keyboard-accessible scroll containment.
 - `ToastProvider` and `useToast` provide queued neutral, success, warning, and danger feedback. Every event has a stable ID, so repeated events update one toast rather than creating spam. Danger feedback uses urgent announcement priority.
 
 Use native semantic HTML for ordinary controls. Use Base UI only when a component needs focus trapping, dismissal gestures, live-region management, or another interaction model that is difficult to implement correctly with native HTML.
